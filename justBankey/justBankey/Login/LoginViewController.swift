@@ -83,7 +83,10 @@ extension LoginViewController {
             errorMessageLabel.leadingAnchor.constraint(equalTo: signButton.leadingAnchor),
             errorMessageLabel.trailingAnchor.constraint(equalTo: signButton.trailingAnchor),
             
-            logoLabel.bottomAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 30),
+            logoLabel.topAnchor.constraint(lessThanOrEqualToSystemSpacingBelow: view.topAnchor, multiplier: 30),
+      //      loginView.
+            logoLabel.bottomAnchor.constraint(equalToSystemSpacingBelow: loginView.topAnchor, multiplier: -7),
+           // logoLabel.bottomAnchor.constraint(lessThanOrEqualToSystemSpacingBelow: loginView.topAnchor, multiplier: -80),
             logoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             
