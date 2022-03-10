@@ -7,12 +7,23 @@
 
 import UIKit
 
+protocol LogoutDelegate: AnyObject {
+    func didLogout()
+}
+
+protocol LoginViewControllerDelegate: AnyObject {
+  //   func didLogin(_ sender: LoginViewController) // pass data
+    func didLogin()
+}
+
 class LoginViewController: UIViewController {
     
     let loginView = LoginView()
     let signButton = UIButton(type: .system)
     let errorMessageLabel = UILabel()
     let logoLabel = UILabel()
+    
+    weak var delegate: LoginViewControllerDelegate?
     
     var username: String? {
         return loginView.userNameTextField.text
@@ -27,6 +38,12 @@ class LoginViewController: UIViewController {
         style()
         layout()
         
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        signButton.configuration?.showsActivityIndicator = false
+        loginView.userNameTextField.text = ""
+        loginView.passwordTextField.text = ""
     }
 
 
@@ -53,7 +70,7 @@ extension LoginViewController {
         logoLabel.translatesAutoresizingMaskIntoConstraints = false
         logoLabel.text = "justBankey"
         logoLabel.font = .boldSystemFont(ofSize: 30)
-        logoLabel.textColor = .systemGray
+        logoLabel.textColor = .black
         logoLabel.textAlignment = .center
         
         
@@ -114,8 +131,9 @@ extension LoginViewController {
             return
         }
         
-        if username == "Kirill" && password == "12345" {
+        if username == " " && password == " " {
             signButton.configuration?.showsActivityIndicator = true
+            delegate?.didLogin()
         } else {
             configureView(withMessage: "Incorrect username or password")
         }
