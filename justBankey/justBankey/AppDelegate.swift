@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let loginViewController = LoginViewController()
     let onboardingContainerViewController = OnboardingContainerViewController()
-    let dummyViewController = DummyViewController()
+//    let dummyViewController = DummyViewController()
     let mainViewController = MainViewController()
     
     
@@ -28,15 +28,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         loginViewController.delegate = self
         onboardingContainerViewController.delegate = self
-        dummyViewController.logoutDelegate = self
         
-        window?.rootViewController = mainViewController
+        let vc = mainViewController
+        vc.setStatusBar()
+        
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().backgroundColor = appColor
+        
+        window?.rootViewController = vc
+      //  dummyViewController.logoutDelegate = self
+        
+      //  window?.rootViewController = mainViewController
+        
+  //      window?.rootViewController = AccountSummaryViewController()
         
      //   window?.rootViewController = LoginViewController()
     //    window?.rootViewController = onboardingContainerViewController
  //   window?.rootViewController = OnboardingContainerViewController()
 //        window?.rootViewController = OnboardingViewController(heroImageName: "delorean", titleText: "JustBankey is faster, easier to use, and has a brand new look and feel that will make you feel like you are back in 1989")
-        mainViewController.selectedIndex = 1
+      //  mainViewController.selectedIndex = 1
         
         return true
     }
@@ -60,7 +70,7 @@ extension AppDelegate: LoginViewControllerDelegate {
     func didLogin() {
     //    window?.rootViewController = onboardingContainerViewController
         if LocalState.hasOnboarded {
-            setRootViewController(dummyViewController)
+            setRootViewController(mainViewController)
         } else {
             setRootViewController(onboardingContainerViewController)
         }
@@ -71,7 +81,7 @@ extension AppDelegate: LoginViewControllerDelegate {
 }
 extension AppDelegate: OnboardinContainerViewControllerDelegate {
     func didFinishOnboarding() {
-        setRootViewController(dummyViewController)
+        setRootViewController(mainViewController)
         LocalState.hasOnboarded = true
         print("Onboarding done!")
     }
