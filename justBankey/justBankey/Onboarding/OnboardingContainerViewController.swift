@@ -30,9 +30,11 @@ class OnboardingContainerViewController: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         
-        let page1 = OnboardingViewController(heroImageName: "delorean", titleText: "JustBankey is faster, easier to use, and has a brand new look and feel that will make you feel like you are back in 1989")
-        let page2 = OnboardingViewController(heroImageName: "world", titleText: "Move your money around the world quicly and securely")
-        let page3 = OnboardingViewController(heroImageName: "thumbs", titleText: "Learn more on our website")
+        let page1 = OnboardingViewController(heroImageName: "Group2", titleText: "JustBankey is faster, easier to use and more fun then other bank apps")
+        let page2 = OnboardingViewController(heroImageName: "Group1", titleText: "Move your money around the world quicly and securely")
+        let page3 = OnboardingViewController(heroImageName: "Group3", titleText: "Are you ready? Let's start!")
+        
+        
         
         pages.append(page1)
         pages.append(page2)
@@ -91,6 +93,7 @@ class OnboardingContainerViewController: UIViewController {
         doneButton.addTarget(self, action: #selector(doneTapped), for: .primaryActionTriggered)
         view.addSubview(doneButton)
         doneButton.isHidden = true
+        
     }
     
     private func layout() {
@@ -99,7 +102,8 @@ class OnboardingContainerViewController: UIViewController {
             closeButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 2),
           //  doneButton.bottomAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.bottomAnchor, multiplier: -9),
             view.bottomAnchor.constraint(equalToSystemSpacingBelow: doneButton.bottomAnchor, multiplier: 8),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: doneButton.trailingAnchor, multiplier: 2)
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: doneButton.trailingAnchor, multiplier: 2),
+            
         ])
     }
     
