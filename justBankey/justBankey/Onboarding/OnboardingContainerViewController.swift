@@ -17,9 +17,9 @@ class OnboardingContainerViewController: UIViewController {
     var pages = [UIViewController]()
     var currentVC: UIViewController {
         didSet {
-            guard let index = pages.firstIndex(of: currentVC) else {return}
-           // doneButton.isHidden = index == pages.count - 2
-            doneButton.isHidden = !(index == pages.count - 1)
+//            guard let index = pages.firstIndex(of: currentVC) else {return}
+//           // doneButton.isHidden = index == pages.count - 2
+//            doneButton.isHidden = !(index == pages.count - 1)
         }
     }
     let closeButton = UIButton(type: .system)
