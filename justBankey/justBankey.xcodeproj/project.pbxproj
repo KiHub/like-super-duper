@@ -30,6 +30,8 @@
 		0BF8749D27E080200024AD00 /* ShakeyBellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF8749C27E080200024AD00 /* ShakeyBellView.swift */; };
 		0BF8749F27E0E3DB0024AD00 /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF8749E27E0E3DB0024AD00 /* Date+Utils.swift */; };
 		0BF874A127E0F08E0024AD00 /* AccountSummaryViewController+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF874A027E0F08E0024AD00 /* AccountSummaryViewController+Networking.swift */; };
+		0BF874A527E2504C0024AD00 /* ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF874A427E2504C0024AD00 /* ProfileTests.swift */; };
+		0BF874A727E2982A0024AD00 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF874A627E2982A0024AD00 /* AccountTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		0BF8749C27E080200024AD00 /* ShakeyBellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeyBellView.swift; sourceTree = "<group>"; };
 		0BF8749E27E0E3DB0024AD00 /* Date+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
 		0BF874A027E0F08E0024AD00 /* AccountSummaryViewController+Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountSummaryViewController+Networking.swift"; sourceTree = "<group>"; };
+		0BF874A427E2504C0024AD00 /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
+		0BF874A627E2982A0024AD00 /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,7 +200,8 @@
 		0BF8748D27DEA2740024AD00 /* justBankeyUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				0BF8749527DEA36C0024AD00 /* CurrencyFormatterTests.swift */,
+				0BF874A327E2500B0024AD00 /* AccountSummary */,
+				0BF874A227E24F220024AD00 /* Utils */,
 			);
 			path = justBankeyUnitTests;
 			sourceTree = "<group>";
@@ -207,6 +212,23 @@
 				0BF8749C27E080200024AD00 /* ShakeyBellView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		0BF874A227E24F220024AD00 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0BF8749527DEA36C0024AD00 /* CurrencyFormatterTests.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		0BF874A327E2500B0024AD00 /* AccountSummary */ = {
+			isa = PBXGroup;
+			children = (
+				0BF874A427E2504C0024AD00 /* ProfileTests.swift */,
+				0BF874A627E2982A0024AD00 /* AccountTests.swift */,
+			);
+			path = AccountSummary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,6 +360,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BF8749627DEA36C0024AD00 /* CurrencyFormatterTests.swift in Sources */,
+				0BF874A727E2982A0024AD00 /* AccountTests.swift in Sources */,
+				0BF874A527E2504C0024AD00 /* ProfileTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
