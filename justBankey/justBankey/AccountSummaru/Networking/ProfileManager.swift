@@ -1,12 +1,23 @@
 //
-//  AccountSummaryViewController+Networking.swift
+//  ProfileManager.swift
 //  justBankey
 //
-//  Created by  Mr.Ki on 15.03.2022.
+//  Created by  Mr.Ki on 18.03.2022.
 //
 
+import Foundation
 
-import UIKit
+protocol ProfileManageable: AnyObject {
+    func fetchProfile(forUserId userId: String,
+                      completion: @escaping
+                      (Result<Profile,NetworkError>) -> Void)
+}
+
+protocol AccountsManegable: AnyObject {
+    func fetchAccounts(forUserId userId: String,
+                       completion: @escaping
+                       (Result<[Account],NetworkError>) -> Void)
+}
 
 enum NetworkError: Error {
     case serverError
@@ -25,7 +36,19 @@ struct Profile: Codable {
     }
 }
 
-extension AccountSummaryViewController {
+struct Account: Codable {
+    let id: String
+    let type: AccountType
+    let name: String
+    let amount: Decimal
+    let createdDateTime: Date
+    
+    static func makeSkeleton() -> Account {
+        return Account(id: "1", type: .Banking, name: "Account name", amount: 0.0, createdDateTime: Date())
+    }
+}
+
+class ProfileManager: ProfileManageable {
     func fetchProfile(forUserId userId: String, completion: @escaping (Result<Profile,NetworkError>) -> Void) {
         let url = URL(string: "https://fierce-retreat-36855.herokuapp.com/bankey/profile/\(userId)")!
 
@@ -46,19 +69,9 @@ extension AccountSummaryViewController {
         }.resume()
     }
 }
-struct Account: Codable {
-    let id: String
-    let type: AccountType
-    let name: String
-    let amount: Decimal
-    let createdDateTime: Date
-    
-    static func makeSkeleton() -> Account {
-        return Account(id: "1", type: .Banking, name: "Account name", amount: 0.0, createdDateTime: Date())
-    }
-}
 
-extension AccountSummaryViewController {
+
+class AccountsManager: AccountsManegable {
     func fetchAccounts(forUserId userId: String, completion: @escaping (Result<[Account],NetworkError>) -> Void) {
         let url = URL(string: "https://fierce-retreat-36855.herokuapp.com/bankey/profile/\(userId)/accounts")!
 

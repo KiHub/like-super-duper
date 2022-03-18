@@ -22,6 +22,10 @@ class AccountSummaryViewController: UIViewController {
     var headerView = AccountSummaryHeaderView(frame: .zero)
     let refreshControll = UIRefreshControl()
     
+    //MARK: - Networking
+    var profileManager: ProfileManageable = ProfileManager()
+    var accountsManager: AccountsManegable = AccountsManager()
+    
     var isLoaded = false
     
     lazy var logoutBarButtonItem: UIBarButtonItem = {
@@ -190,7 +194,7 @@ extension AccountSummaryViewController {
         let userId = String(Int.random(in: 1..<4))
         
         group.enter()
-        fetchProfile(forUserId: userId) { result in
+        profileManager.fetchProfile(forUserId: userId) { result in
             switch result {
             case .success(let profile):
                 self.profile = profile
@@ -203,7 +207,7 @@ extension AccountSummaryViewController {
         }
         
         group.enter()
-        fetchAccounts(forUserId: userId) { result in
+        accountsManager.fetchAccounts(forUserId: userId) { result in
             switch result {
             case .success(let accounts):
                 self.accounts = accounts
@@ -243,8 +247,27 @@ extension AccountSummaryViewController {
         }
     }
     
+//    private func displayError(_ error: NetworkError) {
+//        print(error.localizedDescription)
+//        let title: String
+//        let message: String
+//        switch error {
+//        case .serverError:
+//            title = "Server Error"
+//            message = "Check your internet connection"
+//        case .decodingError:
+//            title = "Decoding Error"
+//            message = "We could not process your request"
+//        }
+//        self.showErrorAlert(title: title, message: message)
+//    }
+    
     private func displayError(_ error: NetworkError) {
-        print(error.localizedDescription)
+        let titleAndMessage = titleAndMessage(for: error)
+        self.showErrorAlert(title: titleAndMessage.0, message: titleAndMessage.1)
+    }
+
+    private func titleAndMessage(for error: NetworkError) -> (String, String) {
         let title: String
         let message: String
         switch error {
@@ -252,10 +275,10 @@ extension AccountSummaryViewController {
             title = "Server Error"
             message = "Check your internet connection"
         case .decodingError:
-            title = "Decoding Error"
+            title = "Network Error"
             message = "We could not process your request"
         }
-        self.showErrorAlert(title: title, message: message)
+        return (title, message)
     }
     
     private func showErrorAlert(title: String, message: String) {
@@ -292,4 +315,11 @@ extension AccountSummaryViewController {
         isLoaded = false
     }
     
+}
+
+//MARK: - Unit testing
+extension AccountSummaryViewController {
+    func titleAndMessageForTesting(for error: NetworkError) -> (String, String) {
+            return titleAndMessage(for: error)
+    }
 }
